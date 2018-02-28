@@ -25,7 +25,7 @@ module.exports = (env = {}) => {
   return {
     context: path.join(__dirname, './'),
     entry: {
-      app: './src/App.jsx'
+      app: './index.js'
     },
     output: {
       path: path.resolve(__dirname, 'public'),
