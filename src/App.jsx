@@ -160,9 +160,10 @@ function Dropdown(props) {
         {props.items.map(item =>
           <button
             className="dropdown-item"
-            type="button"
-            onClick={handleClick}
             data-type={type}
+            key={type+item}
+            onClick={handleClick}
+            type="button"
           >
             {item}
           </button>
@@ -200,6 +201,7 @@ function TabGroup(props) {
         return (
           <TabGroupItem
             handleTabClick={props.handleTabClick}
+            key={v.id}
             {...v}
           />
         )
@@ -274,7 +276,7 @@ function Content(props) {
             <tbody>
               {props.data.map(v => {
                 return (
-                  <tr>
+                  <tr key={v.region + v.service + v.ip_prefix}>
                     <td>{v.region}</td>
                     <td>{v.service}</td>
                     <td>{v.ip_prefix}</td>
