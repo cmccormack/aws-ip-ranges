@@ -1,5 +1,40 @@
+header {
+  margin-bottom: 60px;
+
+  .badge-icon {
+    margin: 0 10px 0 10px;
+  }
+
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+header, footer {
+  display: inline-block;
+  max-width: 1024px;
+  margin: auto;
+  position: fixed !important;
+}
+
+footer {
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  i {
+    color: #DDD;
+  }
+}
+
+.main {
+  margin-top: 80px;
+}
+
 .btn {
   width: 100%;
+  margin-bottom: 7px;
 }
 
 th, tr {
@@ -35,3 +70,4 @@ body {
   width: 100%;
   margin: 5px 0 15px;
 }
+

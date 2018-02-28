@@ -9,7 +9,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // Configure environment settings
 ////////////////////////////////////
 
-module.exports = ({ production=false, development=false }) => {
+module.exports = (env={}) => {
+
+  const { production=false, development=false } = env
 
   return {
     context: path.join(__dirname, './'),
