@@ -9,18 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // Configure environment settings
 ////////////////////////////////////
 
-// CSS/SCSS
-const cssDev = ['style-loader', 'css-loader', 'sass-loader']
-const cssProd = ExtractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: ['css-loader', 'sass-loader'],
-  publicPath: '../'
-})
-
-
-module.exports = (env = {}) => {
-  
-  const { prod=false, dev=false } = env
+module.exports = ({ production=false, development=false }) => {
 
   return {
     context: path.join(__dirname, './'),
@@ -50,7 +39,13 @@ module.exports = (env = {}) => {
         },
         {
           test: /\.s?css$/,
-          use: prod ? cssProd : cssDev
+          use: production 
+            ? ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: ['css-loader', 'sass-loader'],
+                // publicPath: '../'
+              })
+            : ['style-loader', 'css-loader', 'sass-loader']
         },
         {
           test: /\.(png|ico|jpe?g|gif)$/i,
@@ -66,11 +61,12 @@ module.exports = (env = {}) => {
         template: './src/index.html',
         title: 'AWS IP Prefix React App',
         style: './styles/styles.css',
-        inject: 'body'
+        inject: 'body',
+        favicon: './src/images/favicon.ico',
       }),
       new ExtractTextPlugin({
         filename: './styles/[name].css',
-        disable: dev,
+        disable: development,
         allChunks: true
       }),
     ]
