@@ -19,7 +19,8 @@ const cssProd = ExtractTextPlugin.extract({
 
 
 module.exports = (env = {}) => {
-  console.log(env)
+  
+  const { prod=false, dev=false } = env
 
   return {
     context: path.join(__dirname, './'),
@@ -49,7 +50,7 @@ module.exports = (env = {}) => {
         },
         {
           test: /\.s?css$/,
-          use: env.production ? cssProd : cssDev
+          use: prod ? cssProd : cssDev
         },
         {
           test: /\.(png|ico|jpe?g|gif)$/i,
@@ -69,7 +70,7 @@ module.exports = (env = {}) => {
       }),
       new ExtractTextPlugin({
         filename: './styles/[name].css',
-        disable: !env.production,
+        disable: dev,
         allChunks: true
       }),
     ]
